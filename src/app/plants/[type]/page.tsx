@@ -44,7 +44,7 @@ export default async function PlantTypePage({ params }: PlantTypePageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="px-4 py-8">
       <h1 className="text-3xl font-bold mb-6 capitalize">{type} Plants</h1>
       <Suspense fallback={<p>Hleður plöntur...</p>}>
         <Plants plants={plantData} />

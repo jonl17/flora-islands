@@ -2,20 +2,37 @@ import { PlantData } from "@/app/api/scrape/utils";
 import Image from "next/image";
 import React from "react";
 
-type Props = Pick<
-  PlantData,
-  "icelandicName" | "latinName" | "description" | "imageUrl"
->;
+type Props = PlantData & {
+  onCardClick: (plant: PlantData) => void;
+};
 
 export default function PlantCard({
   icelandicName,
   latinName,
   description,
   imageUrl,
+  mainContent,
+  onCardClick,
+  ...otherProps
 }: Props) {
+  const handleClick = () => {
+    onCardClick({
+      icelandicName,
+      latinName,
+      description,
+      imageUrl,
+      mainContent,
+      ...otherProps,
+    });
+  };
+
   return (
-    <div>
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div
+      onClick={handleClick}
+      className="cursor-pointer"
+      aria-label="Open modal"
+    >
+      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <div className="relative h-48">
           {imageUrl ? (
             <Image

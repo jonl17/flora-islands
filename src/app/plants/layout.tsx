@@ -1,7 +1,14 @@
-type Props = {
-  children: React.ReactNode;
-};
+import Navigation from "@/components/Navigation/Navigation";
 
-export default function PlantLayout({ children }: Props) {
-  return <div>{children}</div>;
+export default function PlantsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <Navigation />
+      {children}
+    </>
+  );
 }
