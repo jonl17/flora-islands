@@ -8,9 +8,12 @@ interface PlantTypePageProps {
   };
 }
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 export default async function PlantTypePage({ params }: PlantTypePageProps) {
+  console.log("bASE URL HERE FROM THE SERV YO: ", baseUrl);
   const { type } = params;
-  const response = await fetch(`http://localhost:3000/api/scrape/${type}`);
+  const response = await fetch(`${baseUrl}/api/scrape/${type}`);
   const plantData = (await response.json()) as
     | PlantData[]
     | { error: string; html: string };
