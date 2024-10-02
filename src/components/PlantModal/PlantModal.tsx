@@ -24,45 +24,32 @@ export default function PlantModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[90vw] w-full h-[90vh] p-0 overflow-hidden">
-        <DialogHeader className="p-6 pb-2">
-          <DialogTitle className="text-2xl font-bold">
+      <DialogContent className="sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] w-full max-h-[80vh] p-0 overflow-hidden">
+        <DialogHeader className="p-4 pb-2">
+          <DialogTitle className="text-xl font-bold text-center">
             {plant.latinName}
           </DialogTitle>
         </DialogHeader>
-        <div className="h-full overflow-y-auto md:overflow-y-hidden">
-          <div className="p-6 pt-2 md:grid md:grid-cols-2 md:gap-6 md:h-full">
-            <div className="space-y-6 md:space-y-4">
-              <div className="relative aspect-video md:aspect-square w-full">
-                <Image
-                  src={
-                    plant.imageUrl?.replace("_small", "") ||
-                    plant.imageUrl ||
-                    "/placeholder.jpg"
-                  }
-                  alt={plant.icelandicName}
-                  fill
-                  className="object-cover rounded-md"
+        <div className="h-full overflow-y-auto">
+          <div className="p-4 pt-2 space-y-4">
+            <div className="relative aspect-video w-full max-w-md mx-auto">
+              <Image
+                src={plant.imageUrl || "/placeholder.jpg"}
+                alt={plant.icelandicName}
+                fill
+                className="object-cover rounded-md"
+              />
+            </div>
+            <ScrollArea className="h-[40vh] pr-4 text-center">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">{plant.icelandicName}</h3>
+                <div
+                  className="leading-relaxed text-gray-700 space-y-3"
+                  dangerouslySetInnerHTML={{ __html: plant.mainContent }}
                 />
+                <p className="text-sm text-gray-700">{plant.description}</p>
               </div>
-            </div>
-            <div className="mt-6 md:mt-0 md:h-full">
-              <ScrollArea className="h-full pr-4 md:pb-6">
-                <div className="space-y-6">
-                  <h3 className="text-xl font-semibold">
-                    {plant.icelandicName}
-                  </h3>
-                  <div
-                    className="text-base leading-relaxed text-gray-700 space-y-4"
-                    dangerouslySetInnerHTML={{ __html: plant.mainContent }}
-                  />
-
-                  <p className="text-base text-gray-700 md:pr-4">
-                    {plant.description}
-                  </p>
-                </div>
-              </ScrollArea>
-            </div>
+            </ScrollArea>
           </div>
         </div>
       </DialogContent>
